@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd" id="WebApp_ID" version="4.0">
+  <display-name>groupware</display-name>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+  </welcome-file-list>
+  
+<listener>
+	<listener-class>jdbc.DBCPInitListener</listener-class>
+</listener>
+
+<!-- getInitParameter("poolConfig"); -->
+<context-param>
+	<param-name>poolConfig</param-name>
+	<param-value>
+	jdbcdriver=oracle.jdbc.OracleDriver
+	jdbcUrl=jdbc:oracle:thin:@127.0.0.1:1521/xe
+	dbUser=groupware
+	dbPass=asdf123
+	validationQuery=select 1
+	minIdle=3
+	maxTotal=30
+	poolName=groupware
+	</param-value>
+</context-param>
+
+ 
+ 
+  <!-- mvc컨트롤러코드 p588-->
+  <!-- .do로 요청이 들어오면  ControllerUsingURI이름의 서블릿을 찾아 실행
+       (실제로 동작하는 클래스는 mvc.controller.ControllerUsingURI)  -->
+  <servlet>
+  	<servlet-name>ControllerUsingURI</servlet-name>
+  	<servlet-class>mvc.controller.ControllerUsingURI</servlet-class>
+  	<init-param>
+  		<param-name>configFile</param-name>
+  		<param-value>/WEB-INF/commandHandlerURI.properties</param-value>
+  	</init-param>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>ControllerUsingURI</servlet-name>
+  	<url-pattern>*.do</url-pattern>
+  </servlet-mapping>
+ 
+  
+</web-app>
