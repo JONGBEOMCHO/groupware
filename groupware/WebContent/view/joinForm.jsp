@@ -32,23 +32,17 @@
 				<label>비밀번호 확인* <input type="password" id="re_emp_pw" name="re_emp_pw" required="required"> </label> <br/>
 				<label>한글이름* <input type="text" id="emp_kname" name="emp_kname" required="required"> </label> <br/>
 				<label>영문이름* <input type="text" id="emp_ename" name="emp_ename" placeholder="영문으로만 입력해주세요"  pattern="[a-zA-Z]+$" required="required"> </label> <br/>
-				우편번호* <input type="text" id="sample6_postcode" pattern="[0-9]+">
+				우편번호* <input type="text" id="emp_postcode" name="emp_postcode"  pattern="[0-9]+">
 									<input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br>
-				주소* 		<input type="text" id="sample6_address" ><br>
-				상세주소* <input type="text" id="sample6_detailAddress" ><br>
-				참고항목* <input type="text" id="sample6_extraAddress" ><br>
-
-				
-				<!-- 
-				<label>우편번호* <input type="text" id="emp_zipcode" name="emp_zipcode" pattern="[0-9]+$" required="required"> </label> <br/>
-				<label>주소* <input type="text" id="emp_postcode" name="emp_postcode" required="required"> </label> <br/>
-				<label>상세주소* <input type="text" id="emp_postcode_detail" name="emp_postcode_detail" required="required"> </label> <br/> -->
+				주소* 		<input type="text" id="sample6_address" name="sample6_address"><br>
+				상세주소* <input type="text" id="sample6_detailAddress" name="sample6_detailAddress" ><br>
+				참고항목* <input type="text" id="sample6_extraAddress" name="sample6_extraAddress"><br>
 				<label>생년월일* <input type="text" id="emp_birthday" name="emp_birthday" placeholder="6자리 숫자로 입력해주세요" pattern="[0-9]+" maxlength="6" required="required"> </label> <br/>
 				<label>연락처* <input type="text" id="emp_phonenumber" name="emp_phonenumber" placeholder="숫자만 입력해주세요" pattern="[0-9]+" required="required"> </label> <br/>
 				<label>이메일주소* <input type="text" id="emp_email_id" name="emp_email_id" size="10" required="required">
 				@
 				<input type="text" name="emp_email_d" id="emp_email_d" required="required">
-				<select name="email_dd" id="email_dd" required="required">
+				<select name="email_dd" id="email_dd">
 				    	<option value="">직접입력</option>
 				    	<option value="naver.com">naver.com</option>
 				    	<option value="daum.net">daum.net </option>
@@ -119,7 +113,7 @@
                 }
 
                 // 우편번호와 주소 정보를 해당 필드에 넣는다.
-                document.getElementById('sample6_postcode').value = data.zonecode;
+                document.getElementById('emp_postcode').value = data.zonecode;
                 document.getElementById("sample6_address").value = addr;
                 // 커서를 상세주소 필드로 이동한다.
                 document.getElementById("sample6_detailAddress").focus();

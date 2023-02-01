@@ -34,17 +34,21 @@ public class LoginService {
 			if(!result) { //user가 입력한 비번과  기존회원의 비밀번호가 일치x하면
 				throw new LoginFailException();
 			}
+			
 			return new User(
 					employee.getEmp_no(),
 					employee.getEmp_id(),
 					employee.getEmp_kname(),
 					employee.getEmp_ename(),
+					employee.getEmp_postcode(),
+					employee.getEmp_address(),
 					employee.getEmp_birthday(),
 					employee.getEmp_phonenumber(),
 					employee.getEmp_email(),
 					employee.getDept_name(),
 					employee.getEmp_position(),
-					employee.getEmp_extnumber()
+					employee.getEmp_extnumber(),
+					employee.getEmp_grade()
 					);
 		} catch (SQLException e) {
 			e.printStackTrace();
