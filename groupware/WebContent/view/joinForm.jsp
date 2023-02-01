@@ -22,14 +22,15 @@
 <body>
 	
 	<div class="header">
-		<span> 직원등록 </span>
+		<span> 직원등록 </span> <br/>
+		
 	</div>
 		<form action="/join.do" method="post">
 		<div class="container">
 			<div class="contant">
-				<label>아이디* <input type="text" id="emp_id" name="emp_id" required="required"> </label> <br/>
+				<label>아이디* <input type="text" id="emp_id" name="emp_id" required="required"> </label> <c:if test="${errors.duplicateId}">이미 사용중인 아이디입니다</c:if>  <br/>
 				<label>비밀번호* <input type="password" id="emp_pw" name="emp_pw" required="required"> </label> <br/>
-				<label>비밀번호 확인* <input type="password" id="re_emp_pw" name="re_emp_pw" required="required"> </label> <br/>
+				<label>비밀번호 확인* <input type="password" id="re_emp_pw" name="re_emp_pw" required="required"> </label> <c:if test="${errors.notMatch}">비밀번호가 일치하지 않습니다</c:if>  <br/>
 				<label>한글이름* <input type="text" id="emp_kname" name="emp_kname" required="required"> </label> <br/>
 				<label>영문이름* <input type="text" id="emp_ename" name="emp_ename" placeholder="영문으로만 입력해주세요"  pattern="[a-zA-Z]+$" required="required"> </label> <br/>
 				우편번호* <input type="text" id="emp_postcode" name="emp_postcode"  pattern="[0-9]+">
@@ -68,7 +69,8 @@
 				</div>
 			</div>
 			<input type="submit" value="등록">
-			<input type="reset" value="취소">
+			<input type="reset" value="취소"> <br/>
+			<a href="<%=request.getContextPath()%>/index.jsp">로그인페이지</a>
 		
 		</form>
 	

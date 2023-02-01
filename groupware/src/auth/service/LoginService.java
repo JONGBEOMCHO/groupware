@@ -38,6 +38,7 @@ public class LoginService {
 			return new User(
 					employee.getEmp_no(),
 					employee.getEmp_id(),
+					employee.getEmp_pw(),
 					employee.getEmp_kname(),
 					employee.getEmp_ename(),
 					employee.getEmp_postcode(),

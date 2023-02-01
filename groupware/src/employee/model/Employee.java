@@ -116,6 +116,10 @@ public class Employee {
 	}
 	
 	
+	
+	
+	
+	
 	@Override
 	public String toString() {
 		return "Employee [emp_no=" + emp_no + ", emp_id=" + emp_id + ", emp_pw=" + emp_pw + ", emp_kname=" + emp_kname
@@ -124,6 +128,9 @@ public class Employee {
 				+ emp_phonenumber + ", emp_email=" + emp_email + ", dept_name=" + dept_name + ", emp_position="
 				+ emp_position + ", emp_extnumber=" + emp_extnumber + ", emp_grade=" + emp_grade + "]";
 	}
+	
+	
+	
 	
 	
 	

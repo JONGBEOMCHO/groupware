@@ -147,7 +147,7 @@ public class JoinRequest {
 	
 	//비번과 재확인용 비번 일치체크 - p594 44라인
 	public boolean isPasswordEqualsToConfirm() {
-		return emp_pw!=null && emp_pw.equals(re_emp_pw);   //조건두개 충족. null이면 안됨
+		return emp_pw != null && emp_pw.equals(re_emp_pw);   //조건두개 충족. null이면 안됨
 		
 	}
 
@@ -160,6 +160,7 @@ public class JoinRequest {
 		
 	}
 	
+
 	
 	@Override
 	public String toString() {
