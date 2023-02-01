@@ -27,7 +27,6 @@
 </context-param>
 
  
- 
   <!-- mvc컨트롤러코드 p588-->
   <!-- .do로 요청이 들어오면  ControllerUsingURI이름의 서블릿을 찾아 실행
        (실제로 동작하는 클래스는 mvc.controller.ControllerUsingURI)  -->
@@ -45,5 +44,30 @@
   	<url-pattern>*.do</url-pattern>
   </servlet-mapping>
  
+<!-- 한글 깨짐 방지를 위한 필터 설정 -->
+ <filter>
+   <filter-name>SetCharEncoding</filter-name>
+   <filter-class>org.apache.catalina.filters.SetCharacterEncodingFilter</filter-class>
+     <init-param>
+       <param-name>encoding</param-name>
+       <param-value>utf-8</param-value>
+     </init-param>
+ </filter>
+ <filter-mapping>
+   <filter-name>SetCharEncoding</filter-name>
+   <url-pattern>/*</url-pattern>
+ </filter-mapping>
+ 
   
+
+<!-- 	<filter>
+		<filter-name>LoginCheckFilter</filter-name>
+		<filter-class>filter.LoginCheckFilter</filter-class>
+	</filter>
+
+	<filter-mapping>
+		<filter-name>LoginCheckFilter</filter-name>
+		<url-pattern>*.do</url-pattern>
+	</filter-mapping> 
+ -->
 </web-app>

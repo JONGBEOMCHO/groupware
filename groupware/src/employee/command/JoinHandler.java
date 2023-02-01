@@ -61,16 +61,18 @@ public class JoinHandler implements CommandHandler {
 		String re_emp_pw = request.getParameter("re_emp_pw"); // 비밀번호 확인
 		String emp_kname = request.getParameter("emp_kname"); // 한글이름
 		String emp_ename = request.getParameter("emp_ename"); // 영문이름
-		/* int emp_zipcode = Integer.parseInt(request.getParameter("emp_zipcode")); */ // 우편번호
-		String emp_postcode = request.getParameter("emp_postcode"); // 주소
-		String emp_postcode_detail = request.getParameter("emp_postcode_detail"); // 상세주소
+		int emp_postcode = Integer.parseInt(request.getParameter("emp_postcode")); // 우편번호
+		String sample6_address = request.getParameter("sample6_address");
+		String sample6_detailAddress = request.getParameter("sample6_detailAddress");
+		String sample6_extraAddress = request.getParameter("sample6_extraAddress");
+		String emp_address = sample6_address+" "+sample6_detailAddress+" "+sample6_extraAddress;
 		String emp_birthday = request.getParameter("emp_birthday"); // 생년월일
-//		int emp_phonenumber = Integer.parseInt(request.getParameter("emp_phonenumber"));
+		String emp_phonenumber = request.getParameter("emp_phonenumber");
 		String email_id = request.getParameter("emp_email_id"); // 이메일주소 앞
 		String email_d = request.getParameter("emp_email_d"); // 이메일주소 뒤
 		String emp_email = email_id+"@"+email_d; //이메일주소
 		String dept_name = request.getParameter("dept_name"); // 부서
-//		int emp_position = Integer.parseInt(request.getParameter("emp_position")); // 직급
+		int emp_position = Integer.parseInt(request.getParameter("emp_position")); // 직급
 		
 		//2 비즈니스 로직 실행 <-> service <-> DAO <-> DB 
 		JoinService joinService = new JoinService();
@@ -80,13 +82,13 @@ public class JoinHandler implements CommandHandler {
 		joinReq.setRe_emp_pw(re_emp_pw);
 		joinReq.setEmp_kname(emp_kname);
 		joinReq.setEmp_ename(emp_ename);
-//		joinReq.setEmp_zipcode(emp_zipcode);
-		//joinReq.setEmp_postcode(emp_postcode);
+		joinReq.setEmp_postcode(emp_postcode);
+		joinReq.setEmp_address(emp_address);
 		joinReq.setEmp_birthday(emp_birthday);
-//		joinReq.setEmp_phonenumber(emp_phonenumber);
+		joinReq.setEmp_phonenumber(emp_phonenumber);
 		joinReq.setEmp_email(emp_email);
 		joinReq.setDept_name(dept_name);
-//		joinReq.setEmp_position(emp_position);
+		joinReq.setEmp_position(emp_position);
 		
 		
 		System.out.println("joinReq.setEmp_id="+joinReq.getEmp_id());

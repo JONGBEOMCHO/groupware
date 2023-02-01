@@ -8,43 +8,47 @@ import employee.model.Employee;
 import jdbc.conn.ConnectionProvider;
 
 //605
-//ÀÌ Å¬·¡½º´Â ·Î±×ÀÎÃ³¸®¸¦ À§ÇÑ ¼­ºñ½ºÅ¬·¡½ºÀÌ´Ù
+//ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Î±ï¿½ï¿½ï¿½Ã³ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Å¬ï¿½ï¿½ï¿½ï¿½ï¿½Ì´ï¿½
 public class LoginService {
-	//ÇÊµå
+	//ï¿½Êµï¿½
 	private EmployeeDAO employeeDAO = new EmployeeDAO();
 	
-	//»ý¼ºÀÚ
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	
-	//¸Þ¼­µå
-	//·Î±×ÀÎÃ³¸®-p605 14¶óÀÎ
-	//¸®ÅÏÅ¸ÀÔ User : ·Î±×ÀÎ¿¡ ¼º°øÇÑ È¸¿øÁ¤º¸
+	//ï¿½Þ¼ï¿½ï¿½ï¿½
+	//ï¿½Î±ï¿½ï¿½ï¿½Ã³ï¿½ï¿½-p605 14ï¿½ï¿½ï¿½ï¿½
+	//ï¿½ï¿½ï¿½ï¿½Å¸ï¿½ï¿½ User : ï¿½Î±ï¿½ï¿½Î¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ È¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	public User login(String id,String pwd) {
 		Connection conn;
 		try {
 			conn = ConnectionProvider.getConnection();
 		
-			//1.user°¡ ÀÔ·ÂÇÑ id¸¦ »ç¿ëÇÏ´Â È¸¿øÁ¤º¸ Á¶È¸
+			//1.userï¿½ï¿½ ï¿½Ô·ï¿½ï¿½ï¿½ idï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ È¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È¸
 			Employee employee = employeeDAO.selectById(id, conn);
-			if(employee==null) {//user°¡ ÀÔ·ÂÇÑ id¸¦ »ç¿ëÇÏ´Â È¸¿øÀÌ ¾ø´Ù¸é
+			if(employee==null) {//userï¿½ï¿½ ï¿½Ô·ï¿½ï¿½ï¿½ idï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ È¸ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ù¸ï¿½
+				throw new LoginFailException();
+			}
+			System.out.println("aaaa");
+			//2.ï¿½Ø´ï¿½È¸ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ð¹ï¿½È£ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ô·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ä¡ ï¿½ï¿½È¸
+			boolean result = employee.matchPassword(pwd);
+			if(!result) { //userï¿½ï¿½ ï¿½Ô·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½  ï¿½ï¿½ï¿½ï¿½È¸ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ð¹ï¿½È£ï¿½ï¿½ ï¿½ï¿½Ä¡xï¿½Ï¸ï¿½
 				throw new LoginFailException();
 			}
 			
-			//2.ÇØ´çÈ¸¿øÀÇ ºñ¹Ð¹øÈ£¿Í À¯Àú°¡ ÀÔ·ÂÇÑ ºñ¹øÀÏÄ¡ Á¶È¸
-			boolean result = employee.matchPassword(pwd);
-			if(!result) { //user°¡ ÀÔ·ÂÇÑ ºñ¹ø°ú  ±âÁ¸È¸¿øÀÇ ºñ¹Ð¹øÈ£°¡ ÀÏÄ¡xÇÏ¸é
-				throw new LoginFailException();
-			}
 			return new User(
 					employee.getEmp_no(),
 					employee.getEmp_id(),
 					employee.getEmp_kname(),
 					employee.getEmp_ename(),
+					employee.getEmp_postcode(),
+					employee.getEmp_address(),
 					employee.getEmp_birthday(),
 					employee.getEmp_phonenumber(),
 					employee.getEmp_email(),
 					employee.getDept_name(),
 					employee.getEmp_position(),
-					employee.getEmp_extnumber()
+					employee.getEmp_extnumber(),
+					employee.getEmp_grade()
 					);
 		} catch (SQLException e) {
 			e.printStackTrace();

@@ -78,8 +78,8 @@ public class EmployeeDAO {
 	/*imployee:회원되고싶은 유저가 입력한 user정보
 	 *conn:Connection객체*/
 	public void insert(Employee employee,Connection conn) throws SQLException {
-		String sql = "insert into employee(emp_id, emp_pw, emp_kname, emp_ename, emp_zipcode," + 
-					"emp_postcode, emp_birthday, emp_phonenumber," + 
+		String sql = "insert into employee(emp_id, emp_pw, emp_kname, emp_ename, emp_postcode," + 
+					"emp_address, emp_birthday, emp_phonenumber," + 
 					"emp_email, dept_name, emp_position) " + 
 					"values (?,?,?,?,?,?,?,?,?,?,?)"; 
 					

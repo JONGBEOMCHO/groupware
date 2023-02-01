@@ -105,6 +105,7 @@ public class DBCPInitListener implements ServletContextListener {
 			//여기에서는 ->String poolName="board";
 			String poolName = prop.getProperty("poolName");//poolName을 가져와 변수에 저장
 			driver.registerPool(poolName, connectionPool);
+			
 		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}

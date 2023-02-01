@@ -15,8 +15,8 @@ import mvc.command.CommandHandler;
 
 
 //p606
-//ÀÌ ÄÁÆ®·Ñ·¯ Å¬·¡½º´Â ·Î±×ÀÎ¿äÃ»¿¡ µû¶ó È£ÃâµÇ´Â Å¬·¡½ºÀÌ´Ù
-//¿äÃ»ÁÖ¼Ò   http://ipÁÖ¼Ò/ÄÁÆÐ/login.do
+//ï¿½ï¿½ ï¿½ï¿½Æ®ï¿½Ñ·ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Î±ï¿½ï¿½Î¿ï¿½Ã»ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ È£ï¿½ï¿½Ç´ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½ï¿½Ì´ï¿½
+//ï¿½ï¿½Ã»ï¿½Ö¼ï¿½   http://ipï¿½Ö¼ï¿½/ï¿½ï¿½ï¿½ï¿½/login.do
 public class LoginHandler implements CommandHandler {
 	
 	private static final String FORM_VIEW="/view/loginForm.jsp";
@@ -24,46 +24,46 @@ public class LoginHandler implements CommandHandler {
 	
 	@Override
 	public String process(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		System.out.println("LoginHandler.process()È£Ãâ");
-		//ÆûÀÇ ¿äÃ»¹æ½Ä¿¡ µû¶ó È¸¿ø°¡ÀÔÆûº¸¿©Áà ¿äÃ»°ú  °¡ÀÔÃ³¸®¿äÃ»À» ±¸ºÐ
+		System.out.println("LoginHandler.process()È£ï¿½ï¿½");
+		//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã»ï¿½ï¿½Ä¿ï¿½ ï¿½ï¿½ï¿½ï¿½ È¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã»ï¿½ï¿½  ï¿½ï¿½ï¿½ï¿½Ã³ï¿½ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 		if(request.getMethod().equalsIgnoreCase("GET")) {
-			return processForm(request,response);//È¸¿ø°¡ÀÔÆûº¸¿©Áà
+			return processForm(request,response);//È¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		}else if(request.getMethod().equalsIgnoreCase("POST")) {
-			return processSubmit(request,response);//·Î±×ÀÎÃ³¸®¿äÃ»
+			return processSubmit(request,response);//ï¿½Î±ï¿½ï¿½ï¿½Ã³ï¿½ï¿½ï¿½ï¿½Ã»
 		}else {
-			/* Âü°í. 
-			 * »óÅÂÄÚµå => SC_OK
-			 * 200(¼º°ø): ¼­¹ö°¡ ¿äÃ»À» Á¦´ë·Î Ã³¸®Çß´Ù´Â ¶æÀÌ´Ù. 
-			 * ÀÌ´Â ÁÖ·Î ¼­¹ö°¡ ¿äÃ»ÇÑ ÆäÀÌÁö¸¦ Á¦°øÇß´Ù´Â ÀÇ¹Ì·Î ¾²ÀÎ´Ù.
+			/* ï¿½ï¿½ï¿½ï¿½. 
+			 * ï¿½ï¿½ï¿½ï¿½ï¿½Úµï¿½ => SC_OK
+			 * 200(ï¿½ï¿½ï¿½ï¿½): ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã»ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½ï¿½ß´Ù´ï¿½ ï¿½ï¿½ï¿½Ì´ï¿½. 
+			 * ï¿½Ì´ï¿½ ï¿½Ö·ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã»ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ß´Ù´ï¿½ ï¿½Ç¹Ì·ï¿½ ï¿½ï¿½ï¿½Î´ï¿½.
 			 * 
-			 * »óÅÂÄÚµå => SC_METHOD_NOT_ALLOWED
-			 * 405(Çã¿ëµÇÁö ¾Ê´Â ¸Þ¼Òµå): 
-			 * ¿äÃ»¿¡ ÁöÁ¤µÈ ¹æ¹ýÀ» »ç¿ëÇÒ ¼ö ¾ø´Ù. 
-			 * ¿¹¸¦ µé¾î POST ¹æ½ÄÀ¸·Î ¿äÃ»À» ¹Þ´Â ¼­¹ö¿¡ GET ¿äÃ»À» º¸³»´Â °æ¿ì, 
-			 * ¶Ç´Â ÀÐ±â Àü¿ë ¸®¼Ò½º¿¡ PUT ¿äÃ»À» º¸³»´Â °æ¿ì¿¡ ÀÌ ÄÚµå¸¦ Á¦°øÇÑ´Ù.*/
+			 * ï¿½ï¿½ï¿½ï¿½ï¿½Úµï¿½ => SC_METHOD_NOT_ALLOWED
+			 * 405(ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê´ï¿½ ï¿½Þ¼Òµï¿½): 
+			 * ï¿½ï¿½Ã»ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½. 
+			 * ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ POST ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã»ï¿½ï¿½ ï¿½Þ´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ GET ï¿½ï¿½Ã»ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½, 
+			 * ï¿½Ç´ï¿½ ï¿½Ð±ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ò½ï¿½ï¿½ï¿½ PUT ï¿½ï¿½Ã»ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ì¿¡ ï¿½ï¿½ ï¿½Úµå¸¦ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½.*/
 			response.setStatus(HttpServletResponse.SC_METHOD_NOT_ALLOWED);
 			return null;
 		}
-	}//process³¡
+	}//processï¿½ï¿½
 	
-	//·Î±×ÀÎÆûÀ¸·Î ÀÌµ¿-p607 32¶óÀÎ
+	//ï¿½Î±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½-p607 32ï¿½ï¿½ï¿½ï¿½
 	private String processForm(HttpServletRequest request, HttpServletResponse response) {
 		return FORM_VIEW;
 	}
 
-	//·Î±×ÀÎÃ³¸®-p607 36¶óÀÎ
+	//ï¿½Î±ï¿½ï¿½ï¿½Ã³ï¿½ï¿½-p607 36ï¿½ï¿½ï¿½ï¿½
 	private String processSubmit(HttpServletRequest request, 
 			HttpServletResponse response) throws IOException {
-		System.out.println("processSubmit()ÁøÀÔ");
-		//ÄÁÆ®·Ñ·¯°¡ ÇØ¾ß ÇÏ´Â ÀÏ
-		//1.ÆÄ¶ó¹ÌÅÍ¹Þ±â-p607 38¶óÀÎ
-		String emp_id = request.getParameter("emp_id"); //¾ÆÀÌµð
-		String emp_pw= request.getParameter("emp_pw"); //ºñ¹Ð¹øÈ£
+		System.out.println("processSubmit()ï¿½ï¿½ï¿½ï¿½");
+		//ï¿½ï¿½Æ®ï¿½Ñ·ï¿½ï¿½ï¿½ ï¿½Ø¾ï¿½ ï¿½Ï´ï¿½ ï¿½ï¿½
+		//1.ï¿½Ä¶ï¿½ï¿½ï¿½Í¹Þ±ï¿½-p607 38ï¿½ï¿½ï¿½ï¿½
+		String emp_id = request.getParameter("emp_id"); //ï¿½ï¿½ï¿½Ìµï¿½
+		String emp_pw= request.getParameter("emp_pw"); //ï¿½ï¿½Ð¹ï¿½È£
 		
 		Map<String,Boolean> errors = new HashMap<String,Boolean>();
-		request.setAttribute("errors",errors);//p607 42¶óÀÎ
+		request.setAttribute("errors",errors);//p607 42ï¿½ï¿½ï¿½ï¿½
 
-		//id¿Í ºñ¹øÇÊ¼öÀÔ·Â-p607 44¶óÀÎ
+		//idï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ê¼ï¿½ï¿½Ô·ï¿½-p607 44ï¿½ï¿½ï¿½ï¿½
 		if(emp_id==null || emp_id.isEmpty()) {
 			errors.put("emp_id", Boolean.TRUE);
 		}
@@ -71,19 +71,19 @@ public class LoginHandler implements CommandHandler {
 			errors.put("emp_pw", Boolean.TRUE);
 		}
 		
-		//p607 49¶óÀÎ
-		if(!errors.isEmpty()) {//¿¡·¯°¡ Á¸ÀçÇÏ¸é
+		//p607 49ï¿½ï¿½ï¿½ï¿½
+		if(!errors.isEmpty()) {//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¸ï¿½
 			return FORM_VIEW;
 		}
 		
-		//2.ºñÁî´Ï½º·ÎÁ÷¼öÇà<->Service<->DAO<->DB-p607 53¶óÀÎ
+		//2.ï¿½ï¿½ï¿½ï¿½Ï½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½<->Service<->DAO<->DB-p607 53ï¿½ï¿½ï¿½ï¿½
 		//3.Model&4.view
-		try {//P607 53¶óÀÎ
-			//·Î±×ÀÎ¿¡ ¼º°øÇÏ¸é ·Î±×ÀÎÇÑ È¸¿øÀÇ Á¤º¸¸¦ session´ã´Â´Ù
+		try {//P607 53ï¿½ï¿½ï¿½ï¿½
+			//ï¿½Î±ï¿½ï¿½Î¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¸ï¿½ ï¿½Î±ï¿½ï¿½ï¿½ï¿½ï¿½ È¸ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ sessionï¿½ï¿½Â´ï¿½
 			User user = loginService.login(emp_id, emp_pw);
 			/*Model 
-			  request°´Ã¼.setAttribute("¼Ó¼º°ª",Object value)
-			  session°´Ã¼.setAttribute("¼Ó¼º°ª",Object value)*/
+			  requestï¿½ï¿½Ã¼.setAttribute("ï¿½Ó¼ï¿½ï¿½ï¿½",Object value)
+			  sessionï¿½ï¿½Ã¼.setAttribute("ï¿½Ó¼ï¿½ï¿½ï¿½",Object value)*/
 			HttpSession session = request.getSession();
 			session.setAttribute("AUTHUSER",user);
 			response.sendRedirect(request.getContextPath()+"/view/main.jsp");
@@ -95,7 +95,7 @@ public class LoginHandler implements CommandHandler {
 	}
 	
 	
-	//¹®ÀÚ¿­ÀÇ ÁÂ¿ì°ø¹éÁ¦°Å-p607 64¶óÀÎ
+	//ï¿½ï¿½ï¿½Ú¿ï¿½ï¿½ï¿½ ï¿½Â¿ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½-p607 64ï¿½ï¿½ï¿½ï¿½
 	private String trim(String str) {
 		return  (str==null)? null:str.trim();
 	}
