@@ -20,7 +20,7 @@
 
 	<c:if test="${! empty AUTHUSER}">
 		${AUTHUSER.emp_kname}님, 안녕하세요 <br/>
-		AUTHUSER = ${AUTHUSER}
+		AUTHUSER = ${AUTHUSER} 
 		 
 	</c:if>
 	
