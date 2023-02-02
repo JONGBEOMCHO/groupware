@@ -12,7 +12,7 @@
  <title>근태관리</title>
  <script src="https://code.jquery.com/jquery-2.2.4.min.js" ></script>
  <!-- bootstrap css -->
- <link rel="stylesheet" href="<%=request.getContextPath()%>/css/plugin/bootstrap.min.css">
+ <link rel="stylesheet" href="<%=request.getContextPath()%>/view/assets/css/bootstrap.min.css">
  <style>
  .date {
  	color : gray;
@@ -82,7 +82,7 @@
  	}	
  	
  </script>
-<script type="text/javascript" src="/js/work/time.js?ver=<%=System.currentTimeMillis()%>"></script>
+<script type="text/javascript" src="/view/assets/js/work/time.js?ver=<%=System.currentTimeMillis()%>"></script>
 </head>
 <body id="bd" onload="getTime()">
 	
